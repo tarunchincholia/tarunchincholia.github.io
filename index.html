@@ -126,25 +126,29 @@
   .exp-body li{position:relative;padding-left:20px;margin-bottom:13px;font-size:15px;color:#2e2a22;}
   .exp-body li::before{content:"";position:absolute;left:0;top:9px;width:8px;height:1px;background:var(--amber-soft);}
 
-  /* ---------- PROJECT (single, featured) ---------- */
+  /* ---------- PROJECTS ---------- */
   .on-ink{background:var(--ink);color:var(--paper);}
-  .proj-feature{border:1px solid var(--line-on-ink);border-radius:4px;overflow:hidden;}
-  .proj-head{padding:32px 34px 26px;border-bottom:1px solid var(--line-on-ink);}
-  .proj-head h3{font-size:24px;margin-bottom:6px;}
-  .proj-head .proj-tools{font-size:12.5px;color:var(--ink-muted);}
-  .proj-body{display:grid;grid-template-columns:1fr 1fr;}
-  @media(max-width:760px){.proj-body{grid-template-columns:1fr;}}
+  .projects-grid{display:grid;grid-template-columns:1.05fr 0.95fr;gap:24px;align-items:start;}
+  @media(max-width:860px){.projects-grid{grid-template-columns:1fr;}}
 
-  .proj-col{padding:30px 34px;}
-  .proj-col + .proj-col{border-left:1px solid var(--line-on-ink);}
-  @media(max-width:760px){.proj-col + .proj-col{border-left:none;border-top:1px solid var(--line-on-ink);}}
-  .proj-col h4{font-size:12px;text-transform:none;color:var(--ink-muted);margin-bottom:16px;
-    font-family:'IBM Plex Sans',sans-serif;font-weight:600;}
-  .proj-col ul{list-style:none;}
-  .proj-col li{font-size:14.5px;color:#cfd3da;margin-bottom:11px;padding-left:15px;position:relative;}
-  .proj-col li::before{content:"—";position:absolute;left:0;color:var(--teal);}
+  .proj-card{border:1px solid var(--line-on-ink);border-radius:4px;padding:30px 32px;}
+  .proj-card h3{font-size:21px;margin-bottom:6px;}
+  .proj-tools{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--ink-muted);margin-bottom:20px;}
+  .proj-card p.desc{font-size:14.5px;color:#cfd3da;max-width:52ch;margin-bottom:18px;line-height:1.6;}
 
-  .pipe{display:flex;flex-direction:column;gap:0;}
+  .proj-dash .metrics{display:flex;gap:26px;margin-bottom:20px;}
+  .proj-dash .metric b{display:block;font-family:'IBM Plex Mono',monospace;font-size:24px;color:var(--amber);}
+  .proj-dash .metric span{font-size:11.5px;color:var(--ink-muted);}
+  .proj-dash ul{list-style:none;}
+  .proj-dash li{font-size:14px;color:#cfd3da;margin-bottom:9px;padding-left:15px;position:relative;}
+  .proj-dash li::before{content:"—";position:absolute;left:0;color:var(--teal);}
+
+  .proj-rag h4{font-size:12px;color:var(--ink-muted);margin:20px 0 12px;font-weight:600;}
+  .proj-rag ul{list-style:none;}
+  .proj-rag li{font-size:14px;color:#cfd3da;margin-bottom:9px;padding-left:15px;position:relative;}
+  .proj-rag li::before{content:"—";position:absolute;left:0;color:var(--teal);}
+
+  .pipe{display:flex;flex-direction:column;gap:0;margin-top:4px;}
   .pipe-step{display:flex;align-items:center;gap:12px;padding:9px 0;font-family:'IBM Plex Mono',monospace;font-size:13px;}
   .pipe-step .n{color:var(--amber);}
   .pipe-step .arrow{color:var(--ink-muted);}
@@ -193,7 +197,7 @@
     <div class="nav-name">Tarun Chincholia</div>
     <ul class="nav-links">
       <li><a href="#experience">Experience</a></li>
-      <li><a href="#project">Project</a></li>
+      <li><a href="#project">Projects</a></li>
       <li><a href="#skills">Skills</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
@@ -271,37 +275,51 @@
 <section class="section on-ink" id="project">
   <div class="wrap">
     <div class="section-head">
-      <h2>Project</h2>
+      <h2>Projects</h2>
     </div>
 
-    <div class="proj-feature">
-      <div class="proj-head">
+    <div class="projects-grid">
+
+      <div class="proj-card proj-dash">
+        <h3>E-Commerce Sales &amp; Performance Dashboard</h3>
+        <div class="proj-tools">Power BI · Excel · Power Query · DAX</div>
+        <p class="desc">
+          An interactive dashboard analyzing sales, profit and customer
+          performance across 4 regions and 3 product categories, built on a
+          structured data model with Power Query for cleaning.
+        </p>
+        <div class="metrics">
+          <div class="metric"><b>10+</b><span>DAX measures</span></div>
+          <div class="metric"><b>4</b><span>regions</span></div>
+          <div class="metric"><b>3</b><span>categories</span></div>
+        </div>
+        <ul>
+          <li>Multi-page reports with slicers and drill-through filters</li>
+          <li>Measures for total sales, profit margin, YoY growth, order &amp; customer counts</li>
+          <li>Top 10 products found to drive 35% of total revenue</li>
+        </ul>
+      </div>
+
+      <div class="proj-card proj-rag">
         <h3>PDF RAG Chatbot</h3>
-        <div class="proj-tools mono">Python · FastAPI · FAISS · Sentence-Transformers · Groq API</div>
-      </div>
-      <div class="proj-body">
-        <div class="proj-col">
-          <h4>What it does</h4>
-          <ul>
-            <li>Answers questions grounded in the content of an uploaded PDF, reducing hallucinations</li>
-            <li>Chunks documents and embeds them for semantic retrieval</li>
-            <li>Serves <span class="mono">/upload</span> and <span class="mono">/chat</span> endpoints via FastAPI</li>
-            <li>Runs an in-memory FAISS index for fast, efficient retrieval</li>
-          </ul>
-        </div>
-        <div class="proj-col">
-          <h4>Request pipeline</h4>
-          <div class="pipe">
-            <div class="pipe-step"><span class="n">1</span><span>Upload PDF</span></div>
-            <div class="pipe-step"><span class="arrow">↓</span></div>
-            <div class="pipe-step"><span class="n">2</span><span>Chunk &amp; embed</span></div>
-            <div class="pipe-step"><span class="arrow">↓</span></div>
-            <div class="pipe-step"><span class="n">3</span><span>FAISS retrieval</span></div>
-            <div class="pipe-step"><span class="arrow">↓</span></div>
-            <div class="pipe-step"><span class="n">4</span><span>Grounded answer via Groq API</span></div>
-          </div>
+        <div class="proj-tools">Python · FastAPI · FAISS · Sentence-Transformers · Groq API</div>
+        <p class="desc">
+          Answers questions grounded in the content of an uploaded PDF,
+          reducing hallucinations by retrieving relevant context before
+          generating a response.
+        </p>
+        <h4>Request pipeline</h4>
+        <div class="pipe">
+          <div class="pipe-step"><span class="n">1</span><span>Upload PDF</span></div>
+          <div class="pipe-step"><span class="arrow">↓</span></div>
+          <div class="pipe-step"><span class="n">2</span><span>Chunk &amp; embed</span></div>
+          <div class="pipe-step"><span class="arrow">↓</span></div>
+          <div class="pipe-step"><span class="n">3</span><span>FAISS retrieval</span></div>
+          <div class="pipe-step"><span class="arrow">↓</span></div>
+          <div class="pipe-step"><span class="n">4</span><span>Grounded answer via Groq API</span></div>
         </div>
       </div>
+
     </div>
   </div>
 </section>
