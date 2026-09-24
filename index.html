@@ -2,383 +2,211 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tarun Chincholia — Power BI Developer & Data Analyst</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Tarun Chincholia — Power BI Developer</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,340&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root{
-    --ink:#10131a;
-    --ink-soft:#191e27;
-    --ink-line:#232a35;
-    --paper:#efe9dd;
-    --paper-soft:#e5ddcb;
-    --amber:#e2a13d;
-    --amber-soft:#c98a2c;
-    --teal:#5aada8;
-    --ink-muted:#8d95a3;
-    --paper-muted:#726a5b;
-    --paper-ink:#221f1a;
-    --line-on-ink:rgba(255,255,255,0.11);
-    --line-on-paper:rgba(34,31,26,0.14);
+    --ink:#141a21; --panel:#1c232c; --panel-2:#222a34;
+    --text:#e7eaee; --muted:#8f9aa8; --line:#2c3542;
+    --gold:#d4a24c; --blue:#6c9bf5;
+    box-sizing:border-box;
+    padding-top:env(safe-area-inset-top,0px);
+    padding-bottom:env(safe-area-inset-bottom,0px);
   }
-  *{box-sizing:border-box;margin:0;padding:0;}
-  html{scroll-behavior:smooth;}
+  *{box-sizing:border-box;}
+  html{scroll-padding-top:env(safe-area-inset-top,0px); scroll-behavior:smooth;}
+  html,body{height:auto; margin:0;}
   body{
+    background:var(--ink); color:var(--text);
     font-family:'IBM Plex Sans',sans-serif;
-    background:var(--paper);
-    color:var(--paper-ink);
-    line-height:1.5;
+    line-height:1.55;
     -webkit-font-smoothing:antialiased;
-    background-image:
-      radial-gradient(circle at 1px 1px, rgba(34,31,26,0.05) 1px, transparent 0);
-    background-size:22px 22px;
   }
-  h1,h2,h3{font-family:'Fraunces',serif;font-weight:500;letter-spacing:-0.015em;}
+  @media (prefers-color-scheme: light){
+    :root:not([data-theme="dark"]){
+      --ink:#141a21; --panel:#1c232c; --panel-2:#222a34; --text:#e7eaee; --muted:#8f9aa8; --line:#2c3542;
+    }
+  }
+  .wrap{max-width:920px; margin:0 auto; padding:0 28px;}
+  h1,h2,h3{font-family:'Newsreader',serif; font-weight:500; margin:0;}
   a{color:inherit;}
   .mono{font-family:'IBM Plex Mono',monospace;}
-  .wrap{max-width:1080px;margin:0 auto;padding:0 32px;}
-  @media(max-width:640px){.wrap{padding:0 22px;}}
 
-  /* ---------- NAV ---------- */
-  nav{
-    position:sticky;top:0;z-index:50;
-    background:rgba(16,19,26,0.92);backdrop-filter:blur(6px);
-    color:var(--paper);border-bottom:1px solid var(--line-on-ink);
+  /* HERO */
+  header.hero{padding:88px 0 56px; border-bottom:1px solid var(--line);}
+  .eyebrow{color:var(--gold); font-size:.85rem; letter-spacing:.02em;}
+  .hero h1{font-size:clamp(2.4rem,6vw,3.6rem); line-height:1.05; margin-top:10px; max-width:11ch;}
+  .hero .role{color:var(--muted); font-size:1.15rem; margin-top:14px; max-width:46ch;}
+  .contact-row{display:flex; flex-wrap:wrap; gap:18px 26px; margin-top:28px; font-size:.92rem;}
+  .contact-row a{color:var(--blue); text-decoration:none; border-bottom:1px solid rgba(108,155,245,.35);}
+  .contact-row span{color:var(--muted);}
+
+  section{padding:56px 0; border-bottom:1px solid var(--line);}
+  section:last-of-type{border-bottom:none;}
+  .kicker{color:var(--muted); font-size:.8rem; text-transform:uppercase; letter-spacing:.12em; margin-bottom:22px;}
+  .summary p{font-size:1.08rem; max-width:64ch; color:#d8dce2;}
+
+  /* EXPERIENCE - timeline, numbered because it IS a sequence */
+  .exp-item{display:grid; grid-template-columns:44px 1fr; gap:18px; padding:22px 0;}
+  .exp-item + .exp-item{border-top:1px solid var(--line);}
+  .exp-num{font-family:'IBM Plex Mono',monospace; color:var(--gold); font-size:.95rem; padding-top:3px;}
+  .exp-head{display:flex; justify-content:space-between; flex-wrap:wrap; gap:6px 16px; align-items:baseline;}
+  .exp-title{font-size:1.15rem; font-weight:600;}
+  .exp-meta{color:var(--muted); font-size:.88rem;}
+  .exp-item ul{margin:12px 0 0; padding-left:18px; color:#c9cfd7;}
+  .exp-item li{margin-bottom:6px;}
+
+  /* PROJECTS */
+  .project{background:var(--panel); border:1px solid var(--line); border-radius:6px; padding:26px 28px; margin-bottom:20px;}
+  .project h3{font-size:1.25rem;}
+  .project .stack{color:var(--blue); font-size:.85rem; margin-top:6px; font-family:'IBM Plex Mono',monospace;}
+  .project ul{margin:16px 0 0; padding-left:18px; color:#c9cfd7;}
+  .project li{margin-bottom:6px;}
+  .project .stat{display:inline-block; background:var(--panel-2); color:var(--gold); font-family:'IBM Plex Mono',monospace; font-size:.85rem; padding:3px 9px; border-radius:4px; margin-top:14px;}
+  .project-links{margin-top:14px; font-size:.85rem;}
+  .project-links a{color:var(--blue); margin-right:16px;}
+
+  /* SKILLS - bar-chart style groups */
+  .skill-groups{display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:26px;}
+  .skill-group h4{font-size:.8rem; text-transform:uppercase; letter-spacing:.1em; color:var(--muted); margin-bottom:14px; font-weight:500;}
+  .bar-row{margin-bottom:12px;}
+  .bar-label{display:flex; justify-content:space-between; font-size:.9rem; margin-bottom:5px;}
+  .bar-track{height:6px; background:var(--panel-2); border-radius:3px; overflow:hidden;}
+  .bar-fill{height:100%; background:linear-gradient(90deg,var(--gold),var(--blue)); border-radius:3px;}
+
+  /* EDU + CERT */
+  .two-col{display:grid; grid-template-columns:1fr 1fr; gap:36px;}
+  @media(max-width:640px){.two-col{grid-template-columns:1fr;}}
+  .card-mini h4{font-size:1.05rem; margin-bottom:4px;}
+  .card-mini p{color:var(--muted); font-size:.9rem; margin:2px 0;}
+
+  footer{padding:48px 0 64px; text-align:center; color:var(--muted); font-size:.88rem;}
+  footer a{color:var(--blue); text-decoration:none;}
+
+  @media (prefers-reduced-motion: no-preference){
+    header.hero h1{animation:rise .6s ease both;}
+    @keyframes rise{from{opacity:0; transform:translateY(10px);} to{opacity:1; transform:translateY(0);}}
   }
-  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:58px;}
-  .nav-name{font-family:'Fraunces',serif;font-size:17px;font-weight:500;}
-  .nav-links{display:flex;gap:30px;list-style:none;font-size:13.5px;}
-  .nav-links a{text-decoration:none;color:var(--ink-muted);transition:color .2s;}
-  .nav-links a:hover{color:var(--paper);}
-  .nav-links a:focus-visible{outline:2px solid var(--amber);outline-offset:4px;}
-  @media(max-width:640px){.nav-links{gap:16px;font-size:12.5px;}}
-
-  /* ---------- HERO ---------- */
-  header.hero{background:var(--ink);color:var(--paper);padding:96px 0 84px;position:relative;overflow:hidden;}
-  header.hero::before{
-    content:"";position:absolute;top:-40%;right:-10%;width:520px;height:520px;
-    background:radial-gradient(circle, rgba(226,161,61,0.10) 0%, transparent 70%);
-    pointer-events:none;
-  }
-  .hero-grid{display:grid;grid-template-columns:1.2fr 0.8fr;gap:64px;align-items:end;position:relative;}
-  @media(max-width:860px){.hero-grid{grid-template-columns:1fr;gap:52px;}}
-
-  .status{
-    display:inline-flex;align-items:center;gap:8px;font-size:13px;color:var(--amber);
-    margin-bottom:24px;
-  }
-  .status .dot{width:6px;height:6px;border-radius:50%;background:var(--amber);
-    box-shadow:0 0 0 3px rgba(226,161,61,0.18);}
-
-  .hero h1{font-size:clamp(42px,6.6vw,72px);line-height:1.0;margin-bottom:24px;}
-  .hero p.summary{
-    max-width:50ch;color:var(--ink-muted);font-size:16.5px;line-height:1.7;margin-bottom:32px;
-  }
-  .contact-row{display:flex;flex-wrap:wrap;gap:8px 24px;font-size:13.5px;}
-  .contact-row a{text-decoration:none;border-bottom:1px solid var(--line-on-ink);
-    padding-bottom:2px;transition:border-color .2s,color .2s;}
-  .contact-row a:hover{border-color:var(--amber);color:var(--amber);}
-
-  /* hero flow panel */
-  .flow-panel{border:1px solid var(--line-on-ink);border-radius:3px;padding:26px 24px;
-    background:var(--ink-soft);}
-  .flow-panel .flow-label{font-size:12px;color:var(--ink-muted);margin-bottom:22px;}
-  .flow{position:relative;display:flex;flex-direction:column;gap:0;}
-  .flow-step{display:flex;align-items:flex-start;gap:14px;position:relative;padding-bottom:26px;}
-  .flow-step:last-child{padding-bottom:0;}
-  .flow-step .node{
-    width:9px;height:9px;border-radius:50%;background:var(--ink-line);border:1px solid var(--teal);
-    margin-top:5px;flex-shrink:0;position:relative;z-index:2;
-    transform:scale(0.4);opacity:0;
-    animation:pop 500ms cubic-bezier(.2,.8,.3,1) forwards;
-  }
-  .flow-step:nth-child(1) .node{animation-delay:80ms;}
-  .flow-step:nth-child(2) .node{animation-delay:280ms;}
-  .flow-step:nth-child(3) .node{animation-delay:480ms;}
-  .flow-step:nth-child(4) .node{animation-delay:680ms;background:var(--amber);border-color:var(--amber);}
-  @keyframes pop{to{transform:scale(1);opacity:1;}}
-  .flow-step:not(:last-child)::after{
-    content:"";position:absolute;left:4px;top:14px;bottom:-2px;width:1px;background:var(--ink-line);
-  }
-  .flow-step .txt b{display:block;font-size:14.5px;font-weight:500;margin-bottom:2px;}
-  .flow-step .txt span{font-size:12px;color:var(--ink-muted);}
-  @media(prefers-reduced-motion:reduce){
-    .flow-step .node{animation:none;transform:scale(1);opacity:1;}
-  }
-
-  /* ---------- SECTION HEADINGS ---------- */
-  .section{padding:76px 0;}
-  .section-head{margin-bottom:40px;}
-  .section-head h2{font-size:27px;}
-  .section-head .sub{font-size:13.5px;color:var(--paper-muted);margin-top:6px;}
-  .on-ink .section-head .sub{color:var(--ink-muted);}
-
-  /* ---------- EXPERIENCE ---------- */
-  .exp-row{display:grid;grid-template-columns:230px 1fr;gap:40px;
-    border-top:1px solid var(--line-on-paper);padding-top:30px;}
-  @media(max-width:640px){.exp-row{grid-template-columns:1fr;gap:12px;}}
-  .exp-meta .role{font-family:'Fraunces',serif;font-size:20px;margin-bottom:5px;}
-  .exp-meta .org{font-size:14px;color:var(--paper-muted);margin-bottom:9px;}
-  .exp-meta .dates{font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:var(--paper-muted);}
-  .exp-body ul{list-style:none;max-width:62ch;}
-  .exp-body li{position:relative;padding-left:20px;margin-bottom:13px;font-size:15px;color:#2e2a22;}
-  .exp-body li::before{content:"";position:absolute;left:0;top:9px;width:8px;height:1px;background:var(--amber-soft);}
-
-  /* ---------- PROJECTS ---------- */
-  .on-ink{background:var(--ink);color:var(--paper);}
-  .projects-grid{display:grid;grid-template-columns:1.05fr 0.95fr;gap:24px;align-items:start;}
-  @media(max-width:860px){.projects-grid{grid-template-columns:1fr;}}
-
-  .proj-card{border:1px solid var(--line-on-ink);border-radius:4px;padding:30px 32px;}
-  .proj-card h3{font-size:21px;margin-bottom:6px;}
-  .proj-tools{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--ink-muted);margin-bottom:20px;}
-  .proj-card p.desc{font-size:14.5px;color:#cfd3da;max-width:52ch;margin-bottom:18px;line-height:1.6;}
-
-  .proj-dash .metrics{display:flex;gap:26px;margin-bottom:20px;}
-  .proj-dash .metric b{display:block;font-family:'IBM Plex Mono',monospace;font-size:24px;color:var(--amber);}
-  .proj-dash .metric span{font-size:11.5px;color:var(--ink-muted);}
-  .proj-dash ul{list-style:none;}
-  .proj-dash li{font-size:14px;color:#cfd3da;margin-bottom:9px;padding-left:15px;position:relative;}
-  .proj-dash li::before{content:"—";position:absolute;left:0;color:var(--teal);}
-
-  .proj-rag h4{font-size:12px;color:var(--ink-muted);margin:20px 0 12px;font-weight:600;}
-  .proj-rag ul{list-style:none;}
-  .proj-rag li{font-size:14px;color:#cfd3da;margin-bottom:9px;padding-left:15px;position:relative;}
-  .proj-rag li::before{content:"—";position:absolute;left:0;color:var(--teal);}
-
-  .pipe{display:flex;flex-direction:column;gap:0;margin-top:4px;}
-  .pipe-step{display:flex;align-items:center;gap:12px;padding:9px 0;font-family:'IBM Plex Mono',monospace;font-size:13px;}
-  .pipe-step .n{color:var(--amber);}
-  .pipe-step .arrow{color:var(--ink-muted);}
-  .pipe-step:not(:last-child){border-bottom:1px dashed var(--line-on-ink);}
-
-  /* ---------- SKILLS ---------- */
-  .skills-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;}
-  @media(max-width:640px){.skills-grid{grid-template-columns:1fr;}}
-  .skill-group h3{font-size:14.5px;font-weight:600;font-family:'IBM Plex Sans',sans-serif;
-    margin-bottom:16px;color:var(--paper-muted);}
-  .skill-list{list-style:none;}
-  .skill-list li{display:flex;justify-content:space-between;align-items:center;font-size:15px;
-    padding:13px 0;border-top:1px solid var(--line-on-paper);}
-  .skill-list li:last-child{border-bottom:1px solid var(--line-on-paper);}
-  .skill-list .tag{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--paper-muted);}
-
-  /* ---------- EDUCATION ---------- */
-  .edu-row{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:8px;
-    border-top:1px solid var(--line-on-paper);border-bottom:1px solid var(--line-on-paper);padding:26px 0;}
-  .edu-row .deg{font-family:'Fraunces',serif;font-size:19px;}
-  .edu-row .school{font-size:14px;color:var(--paper-muted);margin-top:3px;}
-  .edu-row .when{font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:var(--paper-muted);}
-
-  /* ---------- FOOTER / CONTACT ---------- */
-  footer{background:var(--ink);color:var(--paper);padding:88px 0 40px;position:relative;overflow:hidden;}
-  footer::before{
-    content:"";position:absolute;bottom:-30%;left:-10%;width:460px;height:460px;
-    background:radial-gradient(circle, rgba(90,173,168,0.09) 0%, transparent 70%);
-    pointer-events:none;
-  }
-  footer h2{font-size:clamp(30px,5vw,46px);max-width:15ch;margin-bottom:28px;position:relative;}
-  .footer-links{display:flex;flex-wrap:wrap;gap:14px 32px;margin-bottom:60px;position:relative;}
-  .footer-links a{text-decoration:none;font-size:15px;border-bottom:1px solid var(--line-on-ink);
-    padding-bottom:2px;transition:border-color .2s,color .2s;}
-  .footer-links a:hover{border-color:var(--amber);color:var(--amber);}
-  .footer-bottom{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;
-    font-size:12.5px;color:var(--ink-muted);border-top:1px solid var(--line-on-ink);padding-top:22px;position:relative;}
-
-  :focus-visible{outline:2px solid var(--amber);outline-offset:3px;}
 </style>
 </head>
 <body>
 
-<nav>
-  <div class="wrap">
-    <div class="nav-name">Tarun Chincholia</div>
-    <ul class="nav-links">
-      <li><a href="#experience">Experience</a></li>
-      <li><a href="#project">Projects</a></li>
-      <li><a href="#skills">Skills</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-  </div>
-</nav>
+<div class="wrap">
+  <header class="hero">
+    <div class="eyebrow">Mumbai, India</div>
+    <h1>Tarun Chincholia</h1>
+    <p class="role">Power BI Developer &amp; Data Analyst — turning raw datasets into dashboards and DAX measures that hold up under a stakeholder's questions.</p>
+    <div class="contact-row">
+      <a href="mailto:tarunchincholia@gmail.com">tarunchincholia@gmail.com</a>
+      <span>+91 7977678065</span>
+      <a href="https://tarunchincholia.github.io" target="_blank" rel="noopener">tarunchincholia.github.io</a>
+    </div>
+  </header>
 
-<header class="hero">
-  <div class="wrap">
-    <div class="hero-grid">
+  <section class="summary">
+    <div class="kicker">Summary</div>
+    <p>Power BI developer with hands-on experience in dashboarding, data modeling, and BI reporting using Power BI, SQL, Python, and Excel. Comfortable across the ETL-to-insight pipeline — cleaning data, writing DAX, and shaping the story a dashboard needs to tell. Completed a Data Science internship applying exploratory data analysis to real-world datasets.</p>
+  </section>
+
+  <section>
+    <div class="kicker">Experience</div>
+    <div class="exp-item">
+      <div class="exp-num">01</div>
       <div>
-        <div class="status"><span class="dot"></span>Open to Power BI &amp; data analyst roles</div>
-        <h1>Tarun<br>Chincholia</h1>
-        <p class="summary">
-          I turn raw, messy data into dashboards and models people actually
-          use to make decisions — built with Power BI, SQL, Python and Excel.
-          Recently completed a data science internship working hands-on with
-          real-world datasets.
-        </p>
-        <div class="contact-row">
-          <a href="mailto:tarunchincholia@gmail.com">tarunchincholia@gmail.com</a>
-          <a href="tel:+917977678065">+91 7977678065</a>
-          <span style="color:var(--ink-muted)">Mumbai, India</span>
-          <a href="https://tarunchincholia.github.io" target="_blank" rel="noopener">tarunchincholia.github.io</a>
+        <div class="exp-head">
+          <span class="exp-title">Data Science Intern, Prodigy InfoTech</span>
+          <span class="exp-meta mono">Remote</span>
         </div>
-      </div>
-
-      <div class="flow-panel">
-        <div class="flow-label mono">How I work with data</div>
-        <div class="flow">
-          <div class="flow-step">
-            <div class="node"></div>
-            <div class="txt"><b>Collect &amp; clean</b><span>Raw, messy, inconsistent data</span></div>
-          </div>
-          <div class="flow-step">
-            <div class="node"></div>
-            <div class="txt"><b>Explore &amp; model</b><span>EDA, structured data models</span></div>
-          </div>
-          <div class="flow-step">
-            <div class="node"></div>
-            <div class="txt"><b>Analyze</b><span>DAX measures, SQL, Python</span></div>
-          </div>
-          <div class="flow-step">
-            <div class="node"></div>
-            <div class="txt"><b>Present</b><span>Power BI &amp; Excel reports</span></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</header>
-
-<section class="section" id="experience">
-  <div class="wrap">
-    <div class="section-head">
-      <h2>Experience</h2>
-    </div>
-    <div class="exp-row">
-      <div class="exp-meta">
-        <div class="role">Data Science Intern</div>
-        <div class="org">Prodigy InfoTech · Remote</div>
-        <div class="dates">Jul 2025 — Aug 2025</div>
-      </div>
-      <div class="exp-body">
         <ul>
-          <li>Performed data cleaning, exploratory data analysis and visualization using Python, Excel and Power BI.</li>
+          <li>Performed data cleaning, exploratory data analysis, and visualization using Python, Excel, and Power BI.</li>
           <li>Applied machine learning concepts and data preprocessing techniques to improve project outcomes.</li>
           <li>Collaborated with the team to analyze datasets, building Excel reports and Power BI dashboards to present actionable insights.</li>
-          <li>Contributed to real-world data science projects, strengthening the practical application of theoretical knowledge.</li>
+          <li>Contributed to real-world data science projects, strengthening the practical side of theoretical knowledge.</li>
         </ul>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="section on-ink" id="project">
-  <div class="wrap">
-    <div class="section-head">
-      <h2>Projects</h2>
+  <section>
+    <div class="kicker">Projects</div>
+
+    <div class="project">
+      <h3>E-Commerce Sales &amp; Performance Dashboard</h3>
+      <div class="stack">Power BI · Excel · Power Query · DAX</div>
+      <ul>
+        <li>Built an interactive Power BI dashboard analyzing sales, profit, and customer performance across 4 regions and 3 product categories, cleaned with Power Query and backed by a structured data model.</li>
+        <li>Developed 10+ DAX measures — total sales, profit margin, YoY growth, order and customer counts — across multi-page reports with slicers and drill-through filters.</li>
+        <li>Identified top-performing products and regional trends to support data-driven decisions.</li>
+      </ul>
+      <div class="stat">Top 10 products drove 35% of total revenue</div>
     </div>
 
-    <div class="projects-grid">
-
-      <div class="proj-card proj-dash">
-        <h3>E-Commerce Sales &amp; Performance Dashboard</h3>
-        <div class="proj-tools">Power BI · Excel · Power Query · DAX</div>
-        <p class="desc">
-          An interactive dashboard analyzing sales, profit and customer
-          performance across 4 regions and 3 product categories, built on a
-          structured data model with Power Query for cleaning.
-        </p>
-        <div class="metrics">
-          <div class="metric"><b>10+</b><span>DAX measures</span></div>
-          <div class="metric"><b>4</b><span>regions</span></div>
-          <div class="metric"><b>3</b><span>categories</span></div>
-        </div>
-        <ul>
-          <li>Multi-page reports with slicers and drill-through filters</li>
-          <li>Measures for total sales, profit margin, YoY growth, order &amp; customer counts</li>
-          <li>Top 10 products found to drive 35% of total revenue</li>
-        </ul>
+    <div class="project">
+      <h3>PDF RAG Chatbot</h3>
+      <div class="stack">Python · FastAPI · FAISS · Sentence-Transformers · Groq API</div>
+      <ul>
+        <li>Built a PDF-based RAG chatbot using text chunking, embeddings, FAISS retrieval, and an LLM for grounded answers.</li>
+        <li>Developed FastAPI <span class="mono">/upload</span> and <span class="mono">/chat</span> endpoints with semantic search and prompt construction.</li>
+        <li>Reduced hallucinations by grounding responses in retrieved document context, using in-memory vector search for fast retrieval.</li>
+      </ul>
+      <div class="project-links">
+        <a href="https://tarunchincholia.github.io" target="_blank" rel="noopener">Demo Images →</a>
+        <a href="https://github.com" target="_blank" rel="noopener">GitHub →</a>
       </div>
-
-      <div class="proj-card proj-rag">
-        <h3>PDF RAG Chatbot</h3>
-        <div class="proj-tools">Python · FastAPI · FAISS · Sentence-Transformers · Groq API</div>
-        <p class="desc">
-          Answers questions grounded in the content of an uploaded PDF,
-          reducing hallucinations by retrieving relevant context before
-          generating a response.
-        </p>
-        <h4>Request pipeline</h4>
-        <div class="pipe">
-          <div class="pipe-step"><span class="n">1</span><span>Upload PDF</span></div>
-          <div class="pipe-step"><span class="arrow">↓</span></div>
-          <div class="pipe-step"><span class="n">2</span><span>Chunk &amp; embed</span></div>
-          <div class="pipe-step"><span class="arrow">↓</span></div>
-          <div class="pipe-step"><span class="n">3</span><span>FAISS retrieval</span></div>
-          <div class="pipe-step"><span class="arrow">↓</span></div>
-          <div class="pipe-step"><span class="n">4</span><span>Grounded answer via Groq API</span></div>
-        </div>
-      </div>
-
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="section" id="skills">
-  <div class="wrap">
-    <div class="section-head">
-      <h2>Skills</h2>
-    </div>
-    <div class="skills-grid">
+  <section>
+    <div class="kicker">Skills</div>
+    <div class="skill-groups">
       <div class="skill-group">
-        <h3>BI &amp; Analytics</h3>
-        <ul class="skill-list">
-          <li>Power BI <span class="tag">dashboards, DAX</span></li>
-          <li>SQL <span class="tag">querying, modeling</span></li>
-          <li>Microsoft Excel <span class="tag">reporting</span></li>
-          <li>Data Analysis <span class="tag">EDA, cleaning</span></li>
-        </ul>
+        <h4>BI &amp; Visualization</h4>
+        <div class="bar-row"><div class="bar-label"><span>Power BI / DAX</span></div><div class="bar-track"><div class="bar-fill" style="width:92%"></div></div></div>
+        <div class="bar-row"><div class="bar-label"><span>Power Query &amp; Data Modeling</span></div><div class="bar-track"><div class="bar-fill" style="width:85%"></div></div></div>
+        <div class="bar-row"><div class="bar-label"><span>Excel (PivotTables, XLOOKUP)</span></div><div class="bar-track"><div class="bar-fill" style="width:88%"></div></div></div>
       </div>
       <div class="skill-group">
-        <h3>Programming &amp; Backend</h3>
-        <ul class="skill-list">
-          <li>Python <span class="tag">scripting, ML</span></li>
-          <li>FastAPI <span class="tag">APIs</span></li>
-        </ul>
+        <h4>Data &amp; Databases</h4>
+        <div class="bar-row"><div class="bar-label"><span>SQL</span></div><div class="bar-track"><div class="bar-fill" style="width:80%"></div></div></div>
+        <div class="bar-row"><div class="bar-label"><span>Python (NumPy)</span></div><div class="bar-track"><div class="bar-fill" style="width:75%"></div></div></div>
+        <div class="bar-row"><div class="bar-label"><span>Data Cleaning &amp; EDA</span></div><div class="bar-track"><div class="bar-fill" style="width:85%"></div></div></div>
+      </div>
+      <div class="skill-group">
+        <h4>Tools &amp; Other</h4>
+        <div class="bar-row"><div class="bar-label"><span>Git / GitHub</span></div><div class="bar-track"><div class="bar-fill" style="width:78%"></div></div></div>
+        <div class="bar-row"><div class="bar-label"><span>FastAPI</span></div><div class="bar-track"><div class="bar-fill" style="width:65%"></div></div></div>
+        <div class="bar-row"><div class="bar-label"><span>Statistical Analysis</span></div><div class="bar-track"><div class="bar-fill" style="width:70%"></div></div></div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="section" id="education">
-  <div class="wrap">
-    <div class="section-head">
-      <h2>Education</h2>
-    </div>
-    <div class="edu-row">
+  <section>
+    <div class="two-col">
       <div>
-        <div class="deg">Bachelor of Computer Applications</div>
-        <div class="school">Mulund College of Commerce, Mumbai</div>
+        <div class="kicker">Education</div>
+        <div class="card-mini">
+          <h4>Bachelor of Computer Applications</h4>
+          <p>Mulund College of Commerce, Mumbai</p>
+          <p class="mono">2023 – 2026</p>
+        </div>
       </div>
-      <div class="when">Jan 2026</div>
+      <div>
+        <div class="kicker">Certificate</div>
+        <div class="card-mini">
+          <h4>Microsoft Certified: Power BI Data Analyst Associate</h4>
+          <p class="mono">PL-300</p>
+        </div>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<footer id="contact">
-  <div class="wrap">
-    <h2>Let's talk about your data.</h2>
-    <div class="footer-links">
-      <a href="mailto:tarunchincholia@gmail.com">tarunchincholia@gmail.com</a>
-      <a href="tel:+917977678065">+91 7977678065</a>
-      <a href="https://tarunchincholia.github.io" target="_blank" rel="noopener">Portfolio</a>
-    </div>
-    <div class="footer-bottom">
-      <span>Tarun Chincholia — Mumbai, India</span>
-      <span>Built from résumé data</span>
-    </div>
-  </div>
-</footer>
+  <footer>
+    Built by Tarun Chincholia · <a href="mailto:tarunchincholia@gmail.com">tarunchincholia@gmail.com</a> · <a href="https://tarunchincholia.github.io" target="_blank" rel="noopener">tarunchincholia.github.io</a>
+  </footer>
+</div>
 
 </body>
 </html>
