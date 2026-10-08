@@ -1,212 +1,163 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Tarun Chincholia — Power BI Developer</title>
+<title>Tarun Chincholia | Power BI Developer & Data Analyst</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --ink:#141a21; --panel:#1c232c; --panel-2:#222a34;
-    --text:#e7eaee; --muted:#8f9aa8; --line:#2c3542;
-    --gold:#d4a24c; --blue:#6c9bf5;
-    box-sizing:border-box;
-    padding-top:env(safe-area-inset-top,0px);
-    padding-bottom:env(safe-area-inset-bottom,0px);
-  }
-  *{box-sizing:border-box;}
-  html{scroll-padding-top:env(safe-area-inset-top,0px); scroll-behavior:smooth;}
-  html,body{height:auto; margin:0;}
-  body{
-    background:var(--ink); color:var(--text);
-    font-family:'IBM Plex Sans',sans-serif;
-    line-height:1.55;
-    -webkit-font-smoothing:antialiased;
-  }
-  @media (prefers-color-scheme: light){
-    :root:not([data-theme="dark"]){
-      --ink:#141a21; --panel:#1c232c; --panel-2:#222a34; --text:#e7eaee; --muted:#8f9aa8; --line:#2c3542;
-    }
-  }
-  .wrap{max-width:920px; margin:0 auto; padding:0 28px;}
-  h1,h2,h3{font-family:'Newsreader',serif; font-weight:500; margin:0;}
-  a{color:inherit;}
-  .mono{font-family:'IBM Plex Mono',monospace;}
-
-  /* HERO */
-  header.hero{padding:88px 0 56px; border-bottom:1px solid var(--line);}
-  .eyebrow{color:var(--gold); font-size:.85rem; letter-spacing:.02em;}
-  .hero h1{font-size:clamp(2.4rem,6vw,3.6rem); line-height:1.05; margin-top:10px; max-width:11ch;}
-  .hero .role{color:var(--muted); font-size:1.15rem; margin-top:14px; max-width:46ch;}
-  .contact-row{display:flex; flex-wrap:wrap; gap:18px 26px; margin-top:28px; font-size:.92rem;}
-  .contact-row a{color:var(--blue); text-decoration:none; border-bottom:1px solid rgba(108,155,245,.35);}
-  .contact-row span{color:var(--muted);}
-
-  section{padding:56px 0; border-bottom:1px solid var(--line);}
-  section:last-of-type{border-bottom:none;}
-  .kicker{color:var(--muted); font-size:.8rem; text-transform:uppercase; letter-spacing:.12em; margin-bottom:22px;}
-  .summary p{font-size:1.08rem; max-width:64ch; color:#d8dce2;}
-
-  /* EXPERIENCE - timeline, numbered because it IS a sequence */
-  .exp-item{display:grid; grid-template-columns:44px 1fr; gap:18px; padding:22px 0;}
-  .exp-item + .exp-item{border-top:1px solid var(--line);}
-  .exp-num{font-family:'IBM Plex Mono',monospace; color:var(--gold); font-size:.95rem; padding-top:3px;}
-  .exp-head{display:flex; justify-content:space-between; flex-wrap:wrap; gap:6px 16px; align-items:baseline;}
-  .exp-title{font-size:1.15rem; font-weight:600;}
-  .exp-meta{color:var(--muted); font-size:.88rem;}
-  .exp-item ul{margin:12px 0 0; padding-left:18px; color:#c9cfd7;}
-  .exp-item li{margin-bottom:6px;}
-
-  /* PROJECTS */
-  .project{background:var(--panel); border:1px solid var(--line); border-radius:6px; padding:26px 28px; margin-bottom:20px;}
-  .project h3{font-size:1.25rem;}
-  .project .stack{color:var(--blue); font-size:.85rem; margin-top:6px; font-family:'IBM Plex Mono',monospace;}
-  .project ul{margin:16px 0 0; padding-left:18px; color:#c9cfd7;}
-  .project li{margin-bottom:6px;}
-  .project .stat{display:inline-block; background:var(--panel-2); color:var(--gold); font-family:'IBM Plex Mono',monospace; font-size:.85rem; padding:3px 9px; border-radius:4px; margin-top:14px;}
-  .project-links{margin-top:14px; font-size:.85rem;}
-  .project-links a{color:var(--blue); margin-right:16px;}
-
-  /* SKILLS - bar-chart style groups */
-  .skill-groups{display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:26px;}
-  .skill-group h4{font-size:.8rem; text-transform:uppercase; letter-spacing:.1em; color:var(--muted); margin-bottom:14px; font-weight:500;}
-  .bar-row{margin-bottom:12px;}
-  .bar-label{display:flex; justify-content:space-between; font-size:.9rem; margin-bottom:5px;}
-  .bar-track{height:6px; background:var(--panel-2); border-radius:3px; overflow:hidden;}
-  .bar-fill{height:100%; background:linear-gradient(90deg,var(--gold),var(--blue)); border-radius:3px;}
-
-  /* EDU + CERT */
-  .two-col{display:grid; grid-template-columns:1fr 1fr; gap:36px;}
-  @media(max-width:640px){.two-col{grid-template-columns:1fr;}}
-  .card-mini h4{font-size:1.05rem; margin-bottom:4px;}
-  .card-mini p{color:var(--muted); font-size:.9rem; margin:2px 0;}
-
-  footer{padding:48px 0 64px; text-align:center; color:var(--muted); font-size:.88rem;}
-  footer a{color:var(--blue); text-decoration:none;}
-
-  @media (prefers-reduced-motion: no-preference){
-    header.hero h1{animation:rise .6s ease both;}
-    @keyframes rise{from{opacity:0; transform:translateY(10px);} to{opacity:1; transform:translateY(0);}}
-  }
+:root{--bg:#0b1a24;--bg2:#10232f;--card:#132a38;--line:#24414f;--text:#e8f0f3;--muted:#9bb3bf;--accent:#f2c811;--accent2:#2fb7a6;--ink:#0b1a24;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]){--bg:#f5f8fa;--bg2:#e9f0f3;--card:#fff;--line:#cfdce3;--text:#0e2230;--muted:#4c6573;--accent:#b88f00;--accent2:#0f8274;--ink:#0b1a24}}
+:root[data-theme="light"]{--bg:#f5f8fa;--bg2:#e9f0f3;--card:#fff;--line:#cfdce3;--text:#0e2230;--muted:#4c6573;--accent:#b88f00;--accent2:#0f8274;--ink:#0b1a24}
+:root[data-theme="dark"]{--bg:#0b1a24;--bg2:#10232f;--card:#132a38;--line:#24414f;--text:#e8f0f3;--muted:#9bb3bf;--accent:#f2c811;--accent2:#2fb7a6;--ink:#0b1a24}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{margin:0;background:var(--bg);color:var(--text);font:400 17px/1.65 "IBM Plex Sans",system-ui,sans-serif;overflow-x:hidden}
+h1,h2,h3{font-family:"Bricolage Grotesque","Segoe UI",sans-serif;line-height:1.1;margin:0}
+a{color:inherit}
+a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.wrap{max-width:1000px;margin:0 auto;padding:0 24px}
+nav{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--bg) 85%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:56px;gap:16px}
+nav b{font-family:"Bricolage Grotesque",sans-serif;font-size:18px}
+nav ul{display:flex;gap:22px;list-style:none;margin:0;padding:0;font-size:15px;color:var(--muted)}
+nav ul a{text-decoration:none}nav ul a:hover{color:var(--accent)}
+@media(max-width:620px){nav ul li:nth-child(n+4){display:none}nav ul{gap:16px}}
+.hero{position:relative;overflow:hidden;padding:96px 0 0;background:radial-gradient(900px 420px at 80% 10%,color-mix(in srgb,var(--accent2) 22%,transparent),transparent 70%),radial-gradient(700px 400px at 0% 0%,color-mix(in srgb,var(--accent) 12%,transparent),transparent 70%),var(--bg)}
+.hero::before{content:"";position:absolute;inset:0;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:48px 48px;opacity:.35;mask-image:linear-gradient(#000 20%,transparent 85%);-webkit-mask-image:linear-gradient(#000 20%,transparent 85%)}
+.hero .wrap{position:relative}
+.role{color:var(--accent);font-weight:500;margin:0 0 14px}
+h1{font-size:clamp(46px,9vw,92px);font-weight:800;letter-spacing:-.03em}
+.lede{max-width:600px;color:var(--muted);font-size:19px;margin:22px 0 30px}
+.btns{display:flex;flex-wrap:wrap;gap:12px}
+.btn{display:inline-block;padding:12px 22px;border-radius:8px;font-weight:500;text-decoration:none;border:1px solid var(--line)}
+.btn.main{background:var(--accent);color:var(--ink);border-color:var(--accent)}
+.btn:hover{transform:translateY(-2px)}
+.chart{display:flex;align-items:flex-end;gap:clamp(6px,1.6vw,16px);height:150px;margin-top:56px}
+.chart i{flex:1;background:linear-gradient(var(--accent2),color-mix(in srgb,var(--accent2) 15%,transparent));border-radius:5px 5px 0 0;transform-origin:bottom;animation:grow .9s cubic-bezier(.2,.8,.2,1) both;animation-delay:calc(var(--i)*60ms)}
+.chart i.hi{background:linear-gradient(var(--accent),color-mix(in srgb,var(--accent) 20%,transparent))}
+@keyframes grow{from{transform:scaleY(0)}}
+@media(prefers-reduced-motion:reduce){.chart i{animation:none}html{scroll-behavior:auto}.btn:hover{transform:none}}
+section{padding:84px 0}
+section:nth-of-type(even){background:var(--bg2)}
+h2{font-size:clamp(30px,5vw,44px);font-weight:700;margin-bottom:34px;letter-spacing:-.02em}
+h3{font-size:22px;font-weight:700}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:14px;margin-top:30px}
+.kpi{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:18px}
+.kpi strong{display:block;font:800 34px "Bricolage Grotesque",sans-serif;color:var(--accent)}
+.kpi span{color:var(--muted);font-size:15px}
+.about p{max-width:720px;margin:0 0 16px}
+.job{border-left:2px solid var(--accent);padding:2px 0 2px 24px}
+.meta{color:var(--muted);margin:4px 0 14px;font-size:15px}
+ul.pts{margin:0;padding-left:20px;max-width:720px}ul.pts li{margin-bottom:8px}
+.projects{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:20px}
+.proj{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:28px;display:flex;flex-direction:column;gap:14px}
+.tags{display:flex;flex-wrap:wrap;gap:8px}
+.tags span{font-size:13px;padding:3px 10px;border-radius:99px;border:1px solid var(--accent2);color:var(--accent2)}
+.proj a.link{margin-top:auto;color:var(--accent);font-weight:500}
+.skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
+.skill{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:24px}
+.skill h3{font-size:19px;margin-bottom:14px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips span{background:var(--bg2);border:1px solid var(--line);padding:4px 11px;border-radius:6px;font-size:14.5px}
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
+.cert{display:flex;gap:16px;align-items:center;background:var(--card);border:1px solid var(--accent);border-radius:12px;padding:22px}
+.cert .badge{flex:none;width:52px;height:52px;border-radius:50%;background:var(--accent);color:var(--ink);display:grid;place-items:center;font:800 15px "Bricolage Grotesque",sans-serif}
+.contact{text-align:center}
+.contact h2{margin-bottom:14px}
+.contact p{color:var(--muted);margin:0 auto 28px;max-width:480px}
+.links{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-top:22px}
+.links a{color:var(--muted)}.links a:hover{color:var(--accent)}
+footer{padding:26px 0;border-top:1px solid var(--line);color:var(--muted);font-size:14px;text-align:center}
 </style>
 </head>
 <body>
+<nav><div class="wrap"><b>Tarun C.</b><ul>
+<li><a href="#about">About</a></li><li><a href="#experience">Experience</a></li><li><a href="#projects">Projects</a></li><li><a href="#skills">Skills</a></li><li><a href="#contact">Contact</a></li></ul></div></nav>
 
-<div class="wrap">
-  <header class="hero">
-    <div class="eyebrow">Mumbai, India</div>
-    <h1>Tarun Chincholia</h1>
-    <p class="role">Power BI Developer &amp; Data Analyst — turning raw datasets into dashboards and DAX measures that hold up under a stakeholder's questions.</p>
-    <div class="contact-row">
-      <a href="mailto:tarunchincholia@gmail.com">tarunchincholia@gmail.com</a>
-      <span>+91 7977678065</span>
-      <a href="https://tarunchincholia.github.io" target="_blank" rel="noopener">tarunchincholia.github.io</a>
-    </div>
-  </header>
+<header class="hero"><div class="wrap">
+<p class="role">Power BI Developer | Data Analyst</p>
+<h1>Tarun Chincholia</h1>
+<p class="lede">I turn raw data into dashboards and insights people can act on, using Power BI, SQL, Python and Excel.</p>
+<div class="btns"><a class="btn main" href="#projects">See my projects</a><a class="btn" href="mailto:tarunchincholia@gmail.com">Email me</a></div>
+<div class="chart" aria-hidden="true">
+<i style="--i:0;height:30%"></i><i style="--i:1;height:42%"></i><i style="--i:2;height:36%"></i><i style="--i:3;height:55%"></i><i style="--i:4;height:48%"></i><i style="--i:5;height:68%"></i><i style="--i:6;height:60%"></i><i class="hi" style="--i:7;height:92%"></i><i style="--i:8;height:74%"></i><i style="--i:9;height:84%"></i><i style="--i:10;height:70%"></i><i style="--i:11;height:100%"></i>
+</div></div></header>
 
-  <section class="summary">
-    <div class="kicker">Summary</div>
-    <p>Power BI developer with hands-on experience in dashboarding, data modeling, and BI reporting using Power BI, SQL, Python, and Excel. Comfortable across the ETL-to-insight pipeline — cleaning data, writing DAX, and shaping the story a dashboard needs to tell. Completed a Data Science internship applying exploratory data analysis to real-world datasets.</p>
-  </section>
+<section id="about" class="about"><div class="wrap">
+<h2>About</h2>
+<p>I'm a Data Analyst and Power BI Developer with hands-on experience in dashboarding, data modeling and business intelligence reporting. I work with Power BI, SQL, Python and Excel.</p>
+<p>My strengths are ETL and data cleaning, DAX, KPI reporting and data storytelling. I built an HR attrition dashboard on a star-schema model with SQL-validated figures, and completed a Data Science internship applying exploratory data analysis to real-world datasets.</p>
+<div class="kpis">
+<div class="kpi"><strong>PL-300</strong><span>Microsoft certified Power BI Data Analyst</span></div>
+<div class="kpi"><strong>10+</strong><span>DAX measures in my sales dashboard</span></div>
+<div class="kpi"><strong>35%</strong><span>of revenue from the top 10 products I identified</span></div>
+</div></div></section>
 
-  <section>
-    <div class="kicker">Experience</div>
-    <div class="exp-item">
-      <div class="exp-num">01</div>
-      <div>
-        <div class="exp-head">
-          <span class="exp-title">Data Science Intern, Prodigy InfoTech</span>
-          <span class="exp-meta mono">Remote</span>
-        </div>
-        <ul>
-          <li>Performed data cleaning, exploratory data analysis, and visualization using Python, Excel, and Power BI.</li>
-          <li>Applied machine learning concepts and data preprocessing techniques to improve project outcomes.</li>
-          <li>Collaborated with the team to analyze datasets, building Excel reports and Power BI dashboards to present actionable insights.</li>
-          <li>Contributed to real-world data science projects, strengthening the practical side of theoretical knowledge.</li>
-        </ul>
-      </div>
-    </div>
-  </section>
+<section id="experience"><div class="wrap">
+<h2>Experience</h2>
+<div class="job">
+<h3>Data Science Intern</h3>
+<p class="meta">Prodigy InfoTech | Remote</p>
+<ul class="pts">
+<li>Cleaned data and ran exploratory analysis, trend analysis and visualization using Python, Excel and Power BI.</li>
+<li>Applied machine learning concepts and data preprocessing techniques to improve project outcomes.</li>
+<li>Worked with a team to analyze datasets and build Excel reports and Power BI dashboards that presented actionable insights.</li>
+<li>Contributed to real-world data science projects, putting theory into practice.</li>
+</ul></div></div></section>
 
-  <section>
-    <div class="kicker">Projects</div>
+<section id="projects"><div class="wrap">
+<h2>Projects</h2>
+<div class="projects">
+<article class="proj">
+<h3>E-Commerce Sales &amp; Performance Dashboard</h3>
+<div class="tags"><span>Power BI</span><span>Excel</span><span>Power Query</span><span>DAX</span></div>
+<ul class="pts">
+<li>Interactive dashboard analyzing sales, profit and customer performance across 4 regions and 3 product categories.</li>
+<li>Cleaned data with Power Query and built a structured data model.</li>
+<li>Wrote 10+ DAX measures and KPIs: total sales, profit margin, YoY growth, order and customer counts.</li>
+<li>Multi-page reports with slicers and drillthrough filters.</li>
+<li>Found that the top 10 products drove 35% of total revenue.</li>
+</ul>
+<a class="link" href="https://github.com/tarunchincholia">View on GitHub</a>
+</article>
+<article class="proj">
+<h3>PDF RAG Chatbot</h3>
+<div class="tags"><span>Python</span><span>FastAPI</span><span>FAISS</span><span>Sentence-Transformers</span><span>Groq API</span></div>
+<ul class="pts">
+<li>Chatbot that answers questions from a PDF using text chunking, embeddings, FAISS retrieval and an LLM.</li>
+<li>FastAPI /upload and /chat endpoints with semantic search and prompt construction.</li>
+<li>Reduced hallucinations by grounding answers in retrieved document context.</li>
+<li>In-memory vector search for fast document retrieval.</li>
+</ul>
+<a class="link" href="https://github.com/tarunchincholia">View on GitHub</a>
+</article>
+</div></div></section>
 
-    <div class="project">
-      <h3>E-Commerce Sales &amp; Performance Dashboard</h3>
-      <div class="stack">Power BI · Excel · Power Query · DAX</div>
-      <ul>
-        <li>Built an interactive Power BI dashboard analyzing sales, profit, and customer performance across 4 regions and 3 product categories, cleaned with Power Query and backed by a structured data model.</li>
-        <li>Developed 10+ DAX measures — total sales, profit margin, YoY growth, order and customer counts — across multi-page reports with slicers and drill-through filters.</li>
-        <li>Identified top-performing products and regional trends to support data-driven decisions.</li>
-      </ul>
-      <div class="stat">Top 10 products drove 35% of total revenue</div>
-    </div>
+<section id="skills"><div class="wrap">
+<h2>Skills</h2>
+<div class="skills">
+<div class="skill"><h3>BI &amp; Visualization</h3><div class="chips"><span>Power BI Desktop</span><span>Power BI Service</span><span>Tableau</span><span>DAX</span><span>Power Query</span><span>Star Schema</span><span>KPI Reporting</span><span>Excel PivotTables</span><span>VLOOKUP / XLOOKUP</span></div></div>
+<div class="skill"><h3>Data &amp; Databases</h3><div class="chips"><span>SQL</span><span>Python</span><span>NumPy</span><span>Jupyter Notebook</span><span>Data Cleaning</span><span>Data Validation</span><span>EDA</span><span>Trend Analysis</span></div></div>
+<div class="skill"><h3>Tools &amp; Other</h3><div class="chips"><span>FastAPI</span><span>Git / GitHub</span><span>Statistical Analysis</span></div></div>
+</div></div></section>
 
-    <div class="project">
-      <h3>PDF RAG Chatbot</h3>
-      <div class="stack">Python · FastAPI · FAISS · Sentence-Transformers · Groq API</div>
-      <ul>
-        <li>Built a PDF-based RAG chatbot using text chunking, embeddings, FAISS retrieval, and an LLM for grounded answers.</li>
-        <li>Developed FastAPI <span class="mono">/upload</span> and <span class="mono">/chat</span> endpoints with semantic search and prompt construction.</li>
-        <li>Reduced hallucinations by grounding responses in retrieved document context, using in-memory vector search for fast retrieval.</li>
-      </ul>
-      <div class="project-links">
-        <a href="https://tarunchincholia.github.io" target="_blank" rel="noopener">Demo Images →</a>
-        <a href="https://github.com" target="_blank" rel="noopener">GitHub →</a>
-      </div>
-    </div>
-  </section>
+<section id="education"><div class="wrap">
+<h2>Education &amp; Certification</h2>
+<div class="two">
+<div class="cert"><div class="badge">PL</div><div><h3>Power BI Data Analyst Associate</h3><p class="meta" style="margin:4px 0 0">Microsoft Certified (PL-300)</p></div></div>
+<div class="cert" style="border-color:var(--line)"><div class="badge" style="background:var(--accent2)">BCA</div><div><h3>Bachelor of Computer Applications</h3><p class="meta" style="margin:4px 0 0">Mulund College of Commerce, Mumbai | 2023 to 2026</p></div></div>
+</div></div></section>
 
-  <section>
-    <div class="kicker">Skills</div>
-    <div class="skill-groups">
-      <div class="skill-group">
-        <h4>BI &amp; Visualization</h4>
-        <div class="bar-row"><div class="bar-label"><span>Power BI / DAX</span></div><div class="bar-track"><div class="bar-fill" style="width:92%"></div></div></div>
-        <div class="bar-row"><div class="bar-label"><span>Power Query &amp; Data Modeling</span></div><div class="bar-track"><div class="bar-fill" style="width:85%"></div></div></div>
-        <div class="bar-row"><div class="bar-label"><span>Excel (PivotTables, XLOOKUP)</span></div><div class="bar-track"><div class="bar-fill" style="width:88%"></div></div></div>
-      </div>
-      <div class="skill-group">
-        <h4>Data &amp; Databases</h4>
-        <div class="bar-row"><div class="bar-label"><span>SQL</span></div><div class="bar-track"><div class="bar-fill" style="width:80%"></div></div></div>
-        <div class="bar-row"><div class="bar-label"><span>Python (NumPy)</span></div><div class="bar-track"><div class="bar-fill" style="width:75%"></div></div></div>
-        <div class="bar-row"><div class="bar-label"><span>Data Cleaning &amp; EDA</span></div><div class="bar-track"><div class="bar-fill" style="width:85%"></div></div></div>
-      </div>
-      <div class="skill-group">
-        <h4>Tools &amp; Other</h4>
-        <div class="bar-row"><div class="bar-label"><span>Git / GitHub</span></div><div class="bar-track"><div class="bar-fill" style="width:78%"></div></div></div>
-        <div class="bar-row"><div class="bar-label"><span>FastAPI</span></div><div class="bar-track"><div class="bar-fill" style="width:65%"></div></div></div>
-        <div class="bar-row"><div class="bar-label"><span>Statistical Analysis</span></div><div class="bar-track"><div class="bar-fill" style="width:70%"></div></div></div>
-      </div>
-    </div>
-  </section>
+<section id="contact" class="contact"><div class="wrap">
+<h2>Let's work together</h2>
+<p>Looking for a data analyst or Power BI developer? Send me an email or give me a call.</p>
+<div class="btns" style="justify-content:center"><a class="btn main" href="mailto:tarunchincholia@gmail.com">tarunchincholia@gmail.com</a><a class="btn" href="tel:+917977678065">+91 79776 78065</a></div>
+<div class="links"><a href="https://github.com/tarunchincholia">GitHub</a><a href="https://tarunchincholia.github.io">Portfolio</a><span style="color:var(--muted)">Mumbai, India 400081</span></div>
+</div></section>
 
-  <section>
-    <div class="two-col">
-      <div>
-        <div class="kicker">Education</div>
-        <div class="card-mini">
-          <h4>Bachelor of Computer Applications</h4>
-          <p>Mulund College of Commerce, Mumbai</p>
-          <p class="mono">2023 – 2026</p>
-        </div>
-      </div>
-      <div>
-        <div class="kicker">Certificate</div>
-        <div class="card-mini">
-          <h4>Microsoft Certified: Power BI Data Analyst Associate</h4>
-          <p class="mono">PL-300</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <footer>
-    Built by Tarun Chincholia · <a href="mailto:tarunchincholia@gmail.com">tarunchincholia@gmail.com</a> · <a href="https://tarunchincholia.github.io" target="_blank" rel="noopener">tarunchincholia.github.io</a>
-  </footer>
-</div>
-
+<footer><div class="wrap">&copy; 2026 Tarun Chincholia</div></footer>
 </body>
 </html>
